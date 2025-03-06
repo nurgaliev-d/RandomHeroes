@@ -7,25 +7,28 @@
 
 import Foundation
 
-struct Superhero: Codable, Identifiable {
+struct Superhero: Identifiable, Codable, Equatable {
     let id: Int
     let name: String
-    let images: Images
     let biography: Biography
     let powerstats: PowerStats
+    let images: Images
+
+    static func == (lhs: Superhero, rhs: Superhero) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
-
-struct Images: Codable {
+struct Images: Codable, Equatable {
     let lg: String
 }
 
-struct Biography: Codable {
+struct Biography: Codable, Equatable {
     let fullName: String
     let publisher: String?
 }
 
-struct PowerStats: Codable {
+struct PowerStats: Codable, Equatable {
     let intelligence, strength, speed, durability, power, combat: Int?
 }
 
